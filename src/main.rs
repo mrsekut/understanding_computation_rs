@@ -18,11 +18,20 @@ impl Expr {
         Expr::Multiply(Box::new(lhs), Box::new(rhs))
     }
 
+    /// 文字列に変換する
     fn to_s(&mut self) -> String {
         match self {
             Expr::Number(i) => format!("{}", i),
             Expr::Add(l, r) => format!("{} + {}", l.to_s(), r.to_s()),
             Expr::Multiply(l, r) => format!("{} * {}", l.to_s(), r.to_s()),
+        }
+    }
+
+    /// 簡約可能かどうか
+    fn is_reduction(&mut self) -> bool {
+        match self {
+            Expr::Number(_) => false,
+            _ => true,
         }
     }
 }
@@ -37,5 +46,5 @@ fn main() {
     let m2 = Expr::mul(n3, n4);
 
     let mut a = Expr::add(m1, m2);
-    println!("{}", a.to_s());
+    println!("{}", a.is_reduction());
 }

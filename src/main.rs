@@ -1,3 +1,5 @@
+/// アンダースタンディングコンピューテーション 2章
+/// スモールステップ意味論の実装
 #[derive(Debug)]
 enum Expr {
     Number(i32),
@@ -32,6 +34,23 @@ impl Expr {
         match self {
             Expr::Number(_) => false,
             _ => true,
+        }
+    }
+
+    fn reduce(&mut self) -> Self {
+        match self {
+            Expr::Add(l, r) => {
+                unimplemented!
+                // if l.is_reduction() {
+                //     Self::add(l.reduce(), r.0)
+                // } else if r.is_reduction() {
+                //     Self::add(l, r.reduce())
+                // } else {
+                //     Self::num(l.0 + r.0)
+                // }
+            }
+            Expr::Multiply(l, r) => unimplemented!,
+            x => x,
         }
     }
 }
